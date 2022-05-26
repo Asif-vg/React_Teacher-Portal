@@ -83,35 +83,13 @@ align-items: center;
 .container-fluid .row .main-portal .manipulation .fac_dep{
   display: flex;
 }
-
-.container-fluid .row .main-portal .manipulation .fac_dep .dropdown{
-  margin-right: 40px;
-}
-.container-fluid .row .main-portal .manipulation .fac_dep .dropdown .custom-lists{
-  background: rgb(27, 39, 92);
-  box-shadow: rgb(0 0 0 / 10%) 10px 10px 50px 10px;
-  border-radius: 5px;
-  padding-bottom: 0px;
-}
-.container-fluid .row .main-portal .manipulation .fac_dep .dropdown .custom-list{
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 19px;
-  color: #F4F5FC;
-  border-bottom: 1px solid #EEEEEE;
-  padding: 15px 30px;
-}
-.container-fluid .row .main-portal .manipulation .fac_dep  .custom-btn{
+.css-1t8y0t9-control,.css-1vp9nu5-control {
   width: 271px;
   height: 58px;
-  background: #1A265C;
-  border-radius: 5px;
-  color: white;
-  border: none;
+  background: #1A265C !important;
+  margin-right: 40px;
 }
-.container-fluid .row .main-portal .manipulation .fac_dep .dropdown .custom-btn::after{
-  margin-left: 40px;
-}
+
 .container-fluid .row .main-portal .manipulation .search-box{
   font-weight: 400;
   font-size: 20px;
@@ -135,7 +113,7 @@ align-items: center;
   width: 1.5rem;
   position: absolute;
   box-sizing: border-box;
-  top: 50%;
+  top: 29px;
   right: 15px;
   transform: translateY(-50%);
 }
@@ -191,6 +169,8 @@ padding: 0;
 }
 .container-fluid .row .main-portal .custom-pagination .pagination-lists .page-nav .pagination-list{
   padding: 15px;
+  display: flex;
+  align-items: center;
 }
 .container-fluid .row .main-portal .custom-pagination .pagination-lists .page-nav .pagination-list .custom-navigation{
   text-decoration: none;
@@ -201,7 +181,13 @@ display: flex;
 align-items: center;
 text-align: center;
 
+
 color: #BCBCBC;
+}
+.container-fluid .row .main-portal .custom-pagination .pagination-lists .page-nav .pagination-list .custom-navigation.active{
+  padding: 5px 10px;
+  border-radius: 10px;
+  border: 1px solid;
 }
 .container-fluid .row .main-portal .custom-pagination .pagination-lists .page-nav .pagination-list .direction{
   line-height: 22px;
@@ -233,6 +219,8 @@ color: #BCBCBC;
 }
 .container-fluid .row .main-portal .custom-pagination .pagination-lists .input_enter-nav .input_enter{
 padding: 11px;
+display: flex;
+    align-items: center;
 }
 .container-fluid .row .main-portal .custom-pagination .pagination-lists .input_enter-nav .go-page{
   font-weight: 400;

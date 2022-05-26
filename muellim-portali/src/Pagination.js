@@ -5,7 +5,7 @@ function Pagination() {
     <ul className='pagination-lists'>
       <div className="page-nav">
       <li className='pagination-list'><a className='custom-navigation direction' href="#"><FaAngleLeft/></a></li>
-      <li className='pagination-list'><a className='custom-navigation' href="#">1</a></li>
+      <li className='pagination-list'><a className='custom-navigation active' href="#">1</a></li>
       <li className='pagination-list'><a className='custom-navigation' href="#">2</a></li>
       <li className='pagination-list'><a className='custom-navigation' href="#">3</a></li>
       <li className='pagination-list'><a className='custom-navigation' href="#">...</a></li>

@@ -1,18 +1,57 @@
-import React from 'react'
+import React from 'react';
+import Select from 'react-select';
+const options = [
+  { value: 'Elektromexanika və avtomatika ', label: 'Elektromexanika və avtomatika' },
+  { value: 'Kompüter mühəndisliyi', label: 'Kompüter mühəndisliyi' },
+  { value: 'Cihaz mühəndisliyi', label: 'Cihaz mühəndisliyi' },
+  { value: 'Ümumi və tətbiqi riyaziyyat', label: 'Ümumi və tətbiqi riyaziyyat ' }
+]
+const colourStyles = {
+  control: styles => ({ ...styles, backgroundColor: 'white'}),
+  singleValue: base => ({
+    ...base,
+    color: "#fff",
+    textAlign: "center"
+  }),
+  input: base => ({
+    ...base,
+    color: "#fff"
+  }),
+  option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+    return {
+      ...styles,
+      backgroundColor: isDisabled ? 'default' : "#1A265C;",
+      color: '#F4F5FC',
+      cursor: isDisabled ? 'not-allowed' : 'default',
+      background : isFocused ? "#9aa1bb;" : "default",
+      fontWeight: "400",
+      fontSize: "16px",
+      textAlign : "center",
+      paddingLeft : "30px",
+      paddingRight : "30px",
+      paddingTop : "14px",
+      paddingBottom : "14px",
+      borderBottom : "1px solid #E3E4EA;"
 
+    };
+  },
+  placeholder: defaultStyles => {
+    return {
+      ...defaultStyles,
+      color: "#F4F5FC",
+      textAlign: "center"
+    };
+  }, menuList: base => ({
+    ...base,
+    padding: 0
+  })
+};
 function Departamet() {
-  return(
-      <div className="dropdown">
-        <button className="custom-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" >
-            Komputer mühəndisliyi
-        </button>
-        <ul className="dropdown-menu dropdown-menu-dark custom-lists" aria-labelledby="dropdownMenuButton2">
-            <li><a className="dropdown-item custom-list" href="#">Elektromexanika və avtomatika</a></li>
-            <li><a className="dropdown-item custom-list" href="#">Kompüter mühəndisliyi</a></li>
-            <li><a className="dropdown-item custom-list" href="#">Cihaz mühəndisliyi</a></li>
-            <li><a className="dropdown-item custom-list" href="#">Ümumi və tətbiqi riyaziyyat</a></li>
-        </ul>
-    </div>
+  
+  return (
+    <>
+    <Select placeholder="Kafedranı seçin"  label="Single select" styles={colourStyles} options={options}  />
+  </>
   )
 }
  

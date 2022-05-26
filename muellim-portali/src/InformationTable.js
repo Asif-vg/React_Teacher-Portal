@@ -1,17 +1,34 @@
 import React from 'react';
-import { useTable } from 'react-table';
-import {useMemo} from 'react';
+import { useTable, useFilters  } from 'react-table';
+import {useMemo,useEffect,useState} from 'react';
+import axios from "axios";
 function InformationTable() {
+  const [data,setData ] = useState([]);
+  const URL = "http://localhost:3001/info";
+  function TextFilter({
+    column: { filterValue, preFilteredRows, setFilter },
+   }) {
+    const count = preFilteredRows.length
+   
+    return (
+      <input
+      style={{border:"none",outline:"none",fontSize:"12px"}}
+        value={filterValue || ''}
+        onChange={e => {
+          setFilter(e.target.value.toLowerCase() || undefined)
+        }}
+        placeholder={`Search ${count} records...`}
+        
+      />
+    )
+   }
+   const defaultColumn = useMemo(
+    () => ({
+      Filter: TextFilter,
+    }),
+    []
+   )
 
-const data =  useMemo(()=>[
-  { name: "Nazilə Rəhimova Əli", workName: "Turist statusun beynəlxalq və daxili qanunvericilikdə təsbit olunmuş əsas hüquqi elementleri", category: "Scopus",date:"23.05.2015",link:"https://www.figma.com/file/hy5ej9m9IjBmcHqWEtgdI1/ASO%C4%B0U-TEACHER?node-id=55%3A415" },
-  { name: "Nazilə Rəhimova Əli", workName: "Turist statusun beynəlxalq və daxili qanunvericilikdə təsbit olunmuş əsas hüquqi elementleri", category: "Scopus",date:"23.05.2015",link:"https://www.figma.com/file/hy5ej9m9IjBmcHqWEtgdI1/ASO%C4%B0U-TEACHER?node-id=55%3A415" },
-  { name: "Nazilə Rəhimova Əli", workName: "Turist statusun beynəlxalq və daxili qanunvericilikdə təsbit olunmuş əsas hüquqi elementleri", category: "Scopus",date:"23.05.2015",link:"https://www.figma.com/file/hy5ej9m9IjBmcHqWEtgdI1/ASO%C4%B0U-TEACHER?node-id=55%3A415"},
-  { name: "Nazilə Rəhimova Əli", workName: "Turist statusun beynəlxalq və daxili qanunvericilikdə təsbit olunmuş əsas hüquqi elementleri", category: "Scopus",date:"23.05.2015",link:"https://www.figma.com/file/hy5ej9m9IjBmcHqWEtgdI1/ASO%C4%B0U-TEACHER?node-id=55%3A415"},
-  { name: "Nazilə Rəhimova Əli", workName: "Turist statusun beynəlxalq və daxili qanunvericilikdə təsbit olunmuş əsas hüquqi elementleri", category: "Scopus",date:"23.05.2015",link:"https://www.figma.com/file/hy5ej9m9IjBmcHqWEtgdI1/ASO%C4%B0U-TEACHER?node-id=55%3A415"},
-  { name: "Nazilə Rəhimova Əli", workName: "Turist statusun beynəlxalq və daxili qanunvericilikdə təsbit olunmuş əsas hüquqi elementleri", category: "Scopus",date:"23.05.2015",link:"https://www.figma.com/file/hy5ej9m9IjBmcHqWEtgdI1/ASO%C4%B0U-TEACHER?node-id=55%3A415"},
-  { name: "Nazilə Rəhimova Əli", workName: "Turist statusun beynəlxalq və daxili qanunvericilikdə təsbit olunmuş əsas hüquqi elementleri", category: "Scopus",date:"23.05.2015",link:"https://www.figma.com/file/hy5ej9m9IjBmcHqWEtgdI1/ASO%C4%B0U-TEACHER?node-id=55%3A415"},
-],[])
 const columns = useMemo(()=>[
    {Header:'Ad,Soyad,Ata adı',accessor:'name'},
    {Header:'Elmi işinin adı',accessor:'workName'},
@@ -20,32 +37,73 @@ const columns = useMemo(()=>[
    {Header:'Link',accessor:'link'},
  
 ],[]);
-const {getTableProps,getTableBodyProps,headerGroups,rows,prepareRow} = useTable({columns,data})
+useEffect(()=>{
+  // fetch(" http://localhost:3001/info")
+  //   .then(res =>
+  //      res.json()
+  //   )
+  //   .then((dt) => setData(dt))
+  //   .catch(console.log);
+  axios.get(URL)
+  .then(dt => setData(dt.data))
+  .catch(console.log)
+  // console.log(data);
+},[])
+const {getTableProps,getTableBodyProps,headerGroups,rows,prepareRow} = useTable({columns,data ,defaultColumn,},
+  useFilters,);
+
   return (
-    <table {...getTableProps()}  className="table table-hover table-bordered">
-      <thead style={{verticalAlign:"middle"}}>
-        {headerGroups.map(headerGroup => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map(column => (
-                  <th {...column.getHeaderProps()} className='table-head'>{column.render('Header')}</th>
-                ))}
-              </tr>
-            ))}
-      </thead>
-      <tbody className='table-body' {...getTableBodyProps()}>
-        {rows.map(row => {
-          prepareRow(row)
-            return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map(cell => {
-                      return <td {...cell.getCellProps()} className='table-data'>{cell.render('Cell')}</td>
-                    })}
-              </tr>
-            )
-          })}
-      </tbody>
-    </table>
-  
+    <div>
+      <table {...getTableProps()}  className="table table-hover table-bordered">
+     <thead style={{verticalAlign:"middle"}}>
+       {headerGroups.map(headerGroup => (
+             <tr {...headerGroup.getHeaderGroupProps()}>
+               {headerGroup.headers.map(column => (
+                 <th {...column.getHeaderProps()} className='table-head'>{column.render('Header')}
+                 <div style={{marginTop:"15px"}}>{column.canFilter ? column.render('Filter') : null}</div></th>
+               ))}
+             </tr>
+           ))}
+     </thead>
+     <tbody className='table-body' {...getTableBodyProps()}>
+       {rows.map(row => {
+         prepareRow(row)
+           return (
+             <tr {...row.getRowProps()}>
+               {row.cells.map(cell => {
+                     return <td {...cell.getCellProps()} className='table-data'>{cell.render('Cell')}</td>
+                   })}
+             </tr>
+           )
+         })}
+     </tbody>
+   </table>  
+      {/* <table className="table table-hover table-bordered">
+        <thead style={{verticalAlign:"middle"}}>
+        <tr>
+          <th className='table-head'>Ad,Soyad,Ata adı</th>
+          <th className='table-head'>Elmi işinin adı</th>
+          <th className='table-head'>Kateqoriyası</th>
+          <th className='table-head'>Nəşr olunduğu tarix</th>
+          <th className='table-head'>Link</th>
+        </tr>
+        </thead>
+        <tbody  className='table-body'>
+        {data.map((dt, id) => {
+          
+          return (
+            <tr key={id}>
+              <td className='table-data'>{dt.name}</td>
+              <td className='table-data'>{dt.workName}</td>
+              <td className='table-data'>{dt.catagory.cat}</td>
+              <td className='table-data'>{dt.date}</td>
+              <td className='table-data'>{dt.link}</td>
+            </tr>
+          )
+        })}
+        </tbody>
+      </table> */}
+    </div>
   )
 }
 export default InformationTable;

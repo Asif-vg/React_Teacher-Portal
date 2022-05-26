@@ -3,9 +3,10 @@ import "./App.css"
 import PortalHeader from "./PortalHeader";
 import Faculty from "./Faculty";
 import Depertament from "./Departamet";
-import Search from "./Search";
+// import Search from "./Search";
 import InformationTable from "./InformationTable";
 import Pagination from "./Pagination";
+
 function Portal() {
   return (
       <div className="container-fluid">
@@ -17,7 +18,7 @@ function Portal() {
                     <Faculty/>
                     <Depertament/>
                   </div>
-                  <Search/>
+                  {/* <Search /> */}
                </div>
                 <div className="custom-table">
                 <InformationTable/>

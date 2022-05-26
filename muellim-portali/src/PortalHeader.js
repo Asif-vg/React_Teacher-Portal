@@ -6,7 +6,7 @@ function PortalHeader() {
     <div className='p-header'>
         <div className="head-logo">
             <a className='img-link' href="#" >
-                <img className='img-fluid logo-img' src={logoImage} alt="Logo image" />
+                <img className='logo-img' src={logoImage} alt="Logo image" />
             </a>
         </div>
         <div className="head-text">
