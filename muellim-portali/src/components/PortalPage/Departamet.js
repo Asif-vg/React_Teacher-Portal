@@ -27,10 +27,7 @@ const colourStyles = {
       fontWeight: "400",
       fontSize: "16px",
       textAlign : "center",
-      paddingLeft : "30px",
-      paddingRight : "30px",
-      paddingTop : "14px",
-      paddingBottom : "14px",
+      padding: "14px 30px",
       borderBottom : "1px solid #E3E4EA;"
 
     };
@@ -47,12 +44,10 @@ const colourStyles = {
   })
 };
 function Departamet() {
-  
   return (
     <>
-    <Select placeholder="Kafedranı seçin"  label="Single select" styles={colourStyles} options={options}  />
-  </>
+      <Select placeholder="Kafedranı seçin"  label="Single select" styles={colourStyles} options={options}  />
+    </>
   )
 }
- 
 export default Departamet;

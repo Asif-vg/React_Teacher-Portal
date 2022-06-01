@@ -4,12 +4,19 @@ import {useMemo,useEffect,useState} from 'react';
 import axios from "axios";
 function InformationTable() {
   const [data,setData ] = useState([]);
+  const columns = useMemo(()=>[
+    {Header:'Ad,Soyad,Ata adı',accessor:'name'},
+    {Header:'Elmi işinin adı',accessor:'workName'},
+    {Header:'Kateqoriyası',accessor:'category'},
+    {Header:'Nəşr olunduğu tarix',accessor:'date'},
+    {Header:'Link',accessor:'link'},
+  
+ ],[]);
   const URL = "http://localhost:3001/info";
   function TextFilter({
     column: { filterValue, preFilteredRows, setFilter },
    }) {
     const count = preFilteredRows.length
-   
     return (
       <input
       style={{border:"none",outline:"none",fontSize:"12px"}}
@@ -18,40 +25,21 @@ function InformationTable() {
           setFilter(e.target.value.toLowerCase() || undefined)
         }}
         placeholder={`Search ${count} records...`}
-        
       />
     )
-   }
-   const defaultColumn = useMemo(
+  }
+const defaultColumn = useMemo(
     () => ({
       Filter: TextFilter,
     }),
     []
-   )
-
-const columns = useMemo(()=>[
-   {Header:'Ad,Soyad,Ata adı',accessor:'name'},
-   {Header:'Elmi işinin adı',accessor:'workName'},
-   {Header:'Kateqoriyası',accessor:'category'},
-   {Header:'Nəşr olunduğu tarix',accessor:'date'},
-   {Header:'Link',accessor:'link'},
- 
-],[]);
+)
+const {getTableProps,getTableBodyProps,headerGroups,rows,prepareRow} = useTable({columns,data ,defaultColumn,},useFilters,);
 useEffect(()=>{
-  // fetch(" http://localhost:3001/info")
-  //   .then(res =>
-  //      res.json()
-  //   )
-  //   .then((dt) => setData(dt))
-  //   .catch(console.log);
   axios.get(URL)
   .then(dt => setData(dt.data))
   .catch(console.log)
-  // console.log(data);
 },[])
-const {getTableProps,getTableBodyProps,headerGroups,rows,prepareRow} = useTable({columns,data ,defaultColumn,},
-  useFilters,);
-
   return (
     <div>
       <table {...getTableProps()}  className="table table-hover table-bordered">
@@ -78,31 +66,6 @@ const {getTableProps,getTableBodyProps,headerGroups,rows,prepareRow} = useTable(
          })}
      </tbody>
    </table>  
-      {/* <table className="table table-hover table-bordered">
-        <thead style={{verticalAlign:"middle"}}>
-        <tr>
-          <th className='table-head'>Ad,Soyad,Ata adı</th>
-          <th className='table-head'>Elmi işinin adı</th>
-          <th className='table-head'>Kateqoriyası</th>
-          <th className='table-head'>Nəşr olunduğu tarix</th>
-          <th className='table-head'>Link</th>
-        </tr>
-        </thead>
-        <tbody  className='table-body'>
-        {data.map((dt, id) => {
-          
-          return (
-            <tr key={id}>
-              <td className='table-data'>{dt.name}</td>
-              <td className='table-data'>{dt.workName}</td>
-              <td className='table-data'>{dt.catagory.cat}</td>
-              <td className='table-data'>{dt.date}</td>
-              <td className='table-data'>{dt.link}</td>
-            </tr>
-          )
-        })}
-        </tbody>
-      </table> */}
     </div>
   )
 }

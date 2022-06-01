@@ -1,6 +1,6 @@
 import React from 'react';
 import {FaSignInAlt} from "react-icons/fa";
-import logoImage from "./assets/images/adnsu-logo.png";
+import logoImage from "../../assets/images/adnsu-logo.png";
 function PortalHeader() {
   return (
     <div className='p-header'>

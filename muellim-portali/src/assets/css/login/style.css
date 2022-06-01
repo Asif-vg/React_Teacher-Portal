@@ -1,0 +1,105 @@
+.login-page{
+    display: flex;
+    justify-content: center;
+    background-image: url('../../images/loginBg.png');
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size: cover; 
+    height: 100vh;
+    align-items: center;
+    position: relative;
+}
+.login-page-opacity{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #45566C;
+    opacity: 0.5;
+}
+.login-platform{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 396px;
+    padding:0px 50px 105px 50px;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    border-radius: 6px;
+    position: relative;
+}
+.login-platform-opacity{
+    opacity: 0.8;
+    background: #F4F5FC;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.login-logo{
+    transform: translateY(-45px);
+}
+.login-header{
+    position: relative;
+}
+.log-head{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    text-align: center;
+    color: #3E577B;
+    margin-bottom: 30px;
+}
+.login-form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+}
+.login-form .login-input{
+    border: 1px solid #1B3B67;
+    border-radius: 3px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: #1B3B67;
+    padding: 15px 37px 15px 15px;
+    outline: none;
+    margin-bottom: 10px;
+    background: transparent;
+}
+.login-form .password-input {
+   position: relative;
+}
+.login-form .password-input .login-input{
+   width: 100%;
+}
+.password-icon{
+    position: absolute;
+    top: 13px;
+    right: 20px;
+    color: grey;
+}
+.login-form .login-button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    width: 100%;
+    background: #1A265C;
+    box-shadow: 0px 4px 10px #6f88ab;
+    border-radius: 3px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    line-height: 19px;
+    color: #FFFFFF;
+    border: none;
+    outline: none;
+    margin-top: 25px;
+}

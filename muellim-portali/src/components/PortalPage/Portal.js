@@ -1,12 +1,10 @@
 import React from 'react';
-import "./App.css"
+import "../../../src/App.css"
 import PortalHeader from "./PortalHeader";
 import Faculty from "./Faculty";
 import Depertament from "./Departamet";
-// import Search from "./Search";
 import InformationTable from "./InformationTable";
 import Pagination from "./Pagination";
-
 function Portal() {
   return (
       <div className="container-fluid">

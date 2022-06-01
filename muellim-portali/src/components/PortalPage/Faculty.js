@@ -27,12 +27,8 @@ const colourStyles = {
       fontWeight: "400",
       fontSize: "16px",
       textAlign : "center",
-      paddingLeft : "30px",
-      paddingRight : "30px",
-      paddingTop : "14px",
-      paddingBottom : "14px",
-      borderBottom : "1px solid #E3E4EA;"
-
+      padding : "14px 30px",
+      borderBottom : "1px solid #E3E4EA;",
     };
   },
   placeholder: defaultStyles => {
@@ -41,16 +37,17 @@ const colourStyles = {
       color: "#F4F5FC",
       textAlign: "center"
     };
-  }, menuList: base => ({
+  }, 
+  menuList: base => ({
     ...base,
-    padding: 0
-  })
+    padding: 0,
+  
+  }), 
 };
 function Faculty() {
-  
   return (
     <>
-     <Select style={{color:"white"}} placeholder="Fakültəni seçin" label="Single select" styles={colourStyles} options={options} />
+     <Select placeholder="Fakültəni seçin" label="Single select" styles={colourStyles} options={options} />
     </>
   )
 }
