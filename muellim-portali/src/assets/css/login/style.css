@@ -83,6 +83,7 @@
     top: 13px;
     right: 20px;
     color: grey;
+    cursor: pointer;
 }
 .login-form .login-button{
     display: flex;

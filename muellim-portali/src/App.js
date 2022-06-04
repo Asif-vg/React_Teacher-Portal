@@ -3,6 +3,7 @@ import "../src/assets/css/register/style.css";
 import "../src/assets/css/login/style.css";
 import Portal from "./components/PortalPage/Portal";
 import Login from "./components/LoginPage/Login";
+import RegisterForAdmin from "./components/RegisterPage/RegisterForAdmin";
 import {
   BrowserRouter as Router,
   Routes,
@@ -20,7 +21,8 @@ function App() {
         <Routes>
             <Route exact path='/' element={< Portal />}></Route>
             <Route exact path='/forminfo' element={< FormInfo />}></Route>
-            <Route exact path='/login' element={< Login />}></Route>
+            <Route exact path='/login' element={< Login/>}></Route>
+            <Route exact path='/register' element={< RegisterForAdmin/>}></Route>
         </Routes>
       </div>
  </Router>
